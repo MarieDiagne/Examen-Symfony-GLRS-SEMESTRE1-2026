@@ -1,0 +1,73 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow border-0">
+            <div class="card-header bg-primary text-white text-center py-3">
+                <h4 class="mb-0 text-uppercase fw-bold" style="letter-spacing: 1px;">
+                    Demande de Rendez-vous
+                </h4>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="alert alert-secondary d-flex align-items-center mb-4" role="alert">
+                    <div class="me-3 fs-3">👤</div>
+                    <div>
+                        <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">Patient (Lecture seule)</small>
+                        <span class="fw-bold text-dark">{{ patient.nom }} {{ patient.prenom }}</span>
+                    </div>
+                </div>
+
+                {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-secondary small">
+                            {{ form_label(form.dateSouhaitee) }}
+                        </label>
+                        {{ form_widget(form.dateSouhaitee, {'attr': {'class': 'form-control border-primary'}}) }}
+                        <div class="form-text small">Sélectionnez la date de visite souhaitée.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-secondary small">Type de prestation</label>
+                        {{ form_widget(form.typePrestation, {'attr': {'class': 'form-select border-primary'}}) }}
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-secondary small">
+                            {{ form_label(form.specialite) }}
+                        </label>
+                        {{ form_widget(form.specialite, {'attr': {'class': 'form-select border-primary'}}) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold text-uppercase shadow-sm">
+                        🚀 Enregistrer la demande
+                    </button>
+
+                {{ form_end(form) }}
+            </div>
+            
+            <div class="card-footer bg-light text-center py-2">
+                <small class="text-muted">Clinic RV - Service de planification</small>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="{{ path('app_rdv_liste') }}" class="text-decoration-none text-muted small">
+                ← Retour à l'espace secrétaire
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Petit effet de focus sur les champs */
+    .form-control:focus, .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+    }
+    .card { border-radius: 15px; overflow: hidden; }
+</style>
+{% endblock %}
